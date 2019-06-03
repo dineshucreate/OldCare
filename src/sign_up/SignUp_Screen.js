@@ -12,25 +12,20 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity} from 'react
 
 
 
-export default class LoginScreen extends Component {
+export default class SignUp_Screen extends Component {
 
   onFocus(){
     this.setState({
         backgroundColor:'#fff'
     })
 }
-loginButton = () =>{
-  alert("Call");
-  this.props.navigation.navigate("SignUp")
-}
-
   render() {
     return (
       <View style={styles.container}>
     
     <TextInput style={styles.textInputs}
          onFocus={()=>this.onFocus()}
-         placeholder='Email'
+         placeholder='Name'
          underlineColorAndroid="#fff"
          selectionColor="#fff"
          placeholderTextColor="#fff">
@@ -39,23 +34,25 @@ loginButton = () =>{
 
     <TextInput style={styles.textInputs}
     onFocus={()=>this.onFocus}
+    placeholder = 'Email'
+    underlineColorAndroid='#fff'
+    selectionColor='#fff'
+    placeholderTextColor='#fff'></TextInput>
+
+<TextInput style={styles.textInputs}
+    onFocus={()=>this.onFocus}
     placeholder = 'Password'
     underlineColorAndroid='#fff'
     selectionColor='#fff'
     placeholderTextColor='#fff'></TextInput>
 
-<TouchableOpacity style={styles.buttonView} onPress={this.loginButton}>
+<TouchableOpacity style={styles.buttonView}>
   <View style={styles.button}>
-      <Text style={styles.buttonText}>Login</Text>
+      <Text style={styles.buttonText}>Register</Text>
   </View>
 
 </TouchableOpacity>
 
-    <View>
-        <Text style={styles.signUpText}>
-          Don't have an account? SignUp here
-        </Text>
-    </View>
 </View>
     );
   }

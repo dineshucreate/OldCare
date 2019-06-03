@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import LoginScreen from './src/login/LoginScreen';
+import SignUp_Screen from './src/sign_up/SignUp_Screen';
 
 
  class App extends Component {
@@ -24,7 +25,7 @@ import LoginScreen from './src/login/LoginScreen';
   render() {
     return (
       <View style={styles.container}>
-      <Text>SPLASH SCREEN</Text>
+      <Text style = {styles.welcome}> SPLASH SCREEN</Text>
       </View>
     );
   }
@@ -35,7 +36,14 @@ import LoginScreen from './src/login/LoginScreen';
 const AppNavigator = createStackNavigator(
   {
     Splash: App,
-    Login: LoginScreen
+    Login: LoginScreen,
+    SignUp: SignUp_Screen
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
   },
   {
     initialRouteName: "Splash"
@@ -49,12 +57,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#7468C5',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
+    color:"#fff"
   },
   instructions: {
     textAlign: 'center',
