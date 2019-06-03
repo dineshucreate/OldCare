@@ -8,41 +8,21 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import LoginScreen from './src/login/LoginScreen';
 
 
- class App extends Component {
 
- 
-  componentDidMount(){
-    setTimeout(() => {
-      this.props.navigation.navigate('Login')
-    }, 3000);
-  }
 
+export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text>SPLASH SCREEN</Text>
+      
       </View>
     );
   }
 }
 
 
-
-const AppNavigator = createStackNavigator(
-  {
-    Splash: App,
-    Login: LoginScreen
-  },
-  {
-    initialRouteName: "Splash"
-  }
-);
-
-export default createAppContainer(AppNavigator);
 
 const styles = StyleSheet.create({
   container: {
