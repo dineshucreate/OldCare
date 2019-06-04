@@ -8,9 +8,10 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { NavigationActions,createStackNavigator, createAppContainer } from "react-navigation";
 import LoginScreen from './src/login/LoginScreen';
 import SignUp_Screen from './src/sign_up/SignUp_Screen';
+import MenuScreen from './src/menu/MenuScreen';
 
 
  class App extends Component {
@@ -19,6 +20,7 @@ import SignUp_Screen from './src/sign_up/SignUp_Screen';
   componentDidMount(){
     setTimeout(() => {
       this.props.navigation.navigate('Login')
+     
     }, 3000);
   }
 
@@ -37,7 +39,8 @@ const AppNavigator = createStackNavigator(
   {
     Splash: App,
     Login: LoginScreen,
-    SignUp: SignUp_Screen
+    SignUp: SignUp_Screen,
+    Menu: MenuScreen,
   },
   {
     headerMode: 'none',

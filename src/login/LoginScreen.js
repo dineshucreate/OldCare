@@ -8,19 +8,78 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity} from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
 export default class LoginScreen extends Component {
+
+  state ={
+    email:'',
+    password:'',
+    validate: false
+  }
 
   onFocus(){
     this.setState({
         backgroundColor:'#fff'
     })
 }
-loginButton = () =>{
-  alert("Call");
+loginButton = (value) =>{
+  console.log("loginButton "+value)
+  if(value){
+    console.log("loginButton True "+value)
+    const { password} = this.state
+    console.log("password "+password)
+    if(password.length>0){
+      console.log("password length "+password)
+    this.getData()
+    }else{
+      alert("Enter a password");
+    }
+  }else{
+    alert("Enter a valid email");
+  }
+ 
+  
+}
+
+getData = async () => {
+  try {
+    console.log("getData ")
+    const emailStore = await AsyncStorage.getItem('email_Key')
+    const passwordStore = await AsyncStorage.getItem('password_Key')
+    console.log("email "+emailStore)
+    if(emailStore !== null & passwordStore !== null) {
+      if(this.state.email==emailStore && this.state.password == passwordStore){
+        console.log("MatchData")
+        this.props.navigation.navigate('Menu');
+      }
+
+      // value previously stored
+    }
+  } catch(e) {
+    // error reading value
+  }
+}
+
+validate = (callback) => {
+  console.log("validate");
+  let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+  if(reg.test(this.state.email) === false){
+  console.log("Email is Not Correct");
+  
+  //this.setState({email:text})
+  return callback(false);
+    }else {
+   // this.setState({email:text})
+    console.log("Email is Correct");
+    
+    return callback(true);
+   }
+}
+
+signUpButton = () =>{
   this.props.navigation.navigate("SignUp")
 }
 
@@ -33,26 +92,28 @@ loginButton = () =>{
          placeholder='Email'
          underlineColorAndroid="#fff"
          selectionColor="#fff"
-         placeholderTextColor="#fff">
+         placeholderTextColor="#fff"
+         onChangeText = {(input)=> this.setState({email:input})}/>
 
-         </TextInput>
+        
 
     <TextInput style={styles.textInputs}
     onFocus={()=>this.onFocus}
     placeholder = 'Password'
     underlineColorAndroid='#fff'
     selectionColor='#fff'
-    placeholderTextColor='#fff'></TextInput>
+    placeholderTextColor='#fff'
+    onChangeText = {(input) => this.setState({password: input})}/>
 
-<TouchableOpacity style={styles.buttonView} onPress={this.loginButton}>
+<TouchableOpacity style={styles.buttonView} onPress={()=>this.validate(this.loginButton)}>
   <View style={styles.button}>
       <Text style={styles.buttonText}>Login</Text>
   </View>
 
 </TouchableOpacity>
 
-    <View>
-        <Text style={styles.signUpText}>
+    <View onPress={this.signUpButton}>
+        <Text style={styles.signUpText} onPress={this.signUpButton}>
           Don't have an account? SignUp here
         </Text>
     </View>
