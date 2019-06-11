@@ -12,14 +12,14 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 
 
-export default  class MenuScreen extends Component {
+export default  class FirstTabScreen extends Component {
 
  
   
   render() {
     return (
       <View style={styles.container}>
-      <Text style = {styles.welcome}> Menu  SCREEN</Text>
+      <Text style = {styles.welcome}> FirstTabScreen </Text>
       </View>
     );
   }

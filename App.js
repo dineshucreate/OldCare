@@ -11,7 +11,8 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { NavigationActions,createStackNavigator, createAppContainer } from "react-navigation";
 import LoginScreen from './src/login/LoginScreen';
 import SignUp_Screen from './src/sign_up/SignUp_Screen';
-import MenuScreen from './src/menu/MenuScreen';
+import HomeScreen from './src/bottom_menu/HomeScreen';
+
 
 
  class App extends Component {
@@ -40,7 +41,7 @@ const AppNavigator = createStackNavigator(
     Splash: App,
     Login: LoginScreen,
     SignUp: SignUp_Screen,
-    Menu: MenuScreen,
+    Menu: HomeScreen,
   },
   {
     headerMode: 'none',

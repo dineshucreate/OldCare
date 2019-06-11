@@ -40,8 +40,6 @@ loginButton = (value) =>{
   }else{
     alert("Enter a valid email");
   }
- 
-  
 }
 
 getData = async () => {
@@ -54,6 +52,8 @@ getData = async () => {
       if(this.state.email==emailStore && this.state.password == passwordStore){
         console.log("MatchData")
         this.props.navigation.navigate('Menu');
+      }else{
+        alert("Please enter valid credentionals");
       }
 
       // value previously stored
@@ -64,6 +64,8 @@ getData = async () => {
 }
 
 validate = (callback) => {
+
+  
   console.log("validate");
   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
   if(reg.test(this.state.email) === false){
